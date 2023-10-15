@@ -40,6 +40,14 @@
         th:errors="*{postalCode}"
         class="error"></span>
         </div>
+        <div class="mb-3">
+          <label for="CourseCode" class="form-label">Course Code</label>
+          <input type="text" th:field="*{CourseCode}" class="form-control" id="CourseCode" aria-describedby="CourseCode">
+          <!-- Add error message (if present) -->
+        <span th:if="${#fields.hasErrors('CourseCode')}"
+              th:errors="*{CourseCode}"
+              class="error"></span>
+        </div>
     
         <div class="mb-3 form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
