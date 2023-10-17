@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,8 +12,44 @@
     <body>
         <h2>Kanti Properties Home Page</h2>
         <hr>
-        Welcome to Kanti Properties!
-        
+        <p>
+            Welcome to Kanti Properties!
+        </p>
+
+        <hr>
+
+        <!-- display user name and role -->
+
+        <p>
+            User: <span sec:authentication="principal.username"></span>
+            <br><br>
+            Role(s): <span sec:authentication="principal.authorities"></span>
+        </p>
+
+
+        <div sec:authorize="hasRole('MANAGER')">
+            <!-- Add a link to point to /leaders ... this is for the managers -->
+            <p>
+                <a th:href="@{/leaders}">Leadership Meeting</a>
+                (Only for Manager peeps)
+            </p>
+        </div>
+
+        <div sec:authorize="hasRole('ADMIN')">
+            <!-- Add a link to point to /systems ... this is for the managers -->
+            <p>
+                <a th:href="@{/systems}">IT Systems Meeting</a>
+                (Only for Admin peeps)
+            </p>
+        </div>
+
+        <hr>
+        <!-- Add a logout button -->
+        <form action="#" th:action="@{/logout}" method="POST">
+            
+            <input type="submit" value="Logout" />
+        </form>
+
         <script src="" async defer></script>
     </body>
 </html>
